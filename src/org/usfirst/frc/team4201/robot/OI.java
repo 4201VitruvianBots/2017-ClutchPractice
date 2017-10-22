@@ -57,17 +57,8 @@ public class OI {
 		for(int i = 0; i < xBoxButtons.length; i++)
 			xBoxButtons[i] = new JoystickButton(xBoxController, (i + 1));
 
-		//leftButtons[0].whenPressed(); // Toggle Conveyor+Uptake
 		leftButtons[6].whenPressed(new ToggleDriveShift());			// Physical Button Broken
 		
 		rightButtons[0].whenPressed(new ToggleAutoDriveShift());
-		rightButtons[1].whenPressed(new ToggleHopperWall());		// Not working
-		rightButtons[4].whenPressed(new DeployGroundGearIntake());	// Not working
-		rightButtons[6].whenPressed(new RetractGroundGearIntake());	// Not working
-
-		xBoxButtons[0].whileHeld(new CloseGearClamps());			// Moving Hopper Wall
-		xBoxButtons[1].whileHeld(new OpenGearClamps());				// Moving Hopper Wall
-		//xBoxButtons[4].whenPressed(); // Climber Motors
-		//xBoxButtons[5].whileHeld(); // Intake Balls
 	}
 }

@@ -22,8 +22,6 @@ import org.usfirst.frc.team4201.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static DriveTrain driveTrain;
-	public static Hopper hopper;
-	public static GroundGearIntake groundGearIntake;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -38,8 +36,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		driveTrain = new DriveTrain();
-		hopper = new Hopper();
-		groundGearIntake = new GroundGearIntake();
 		oi = new OI();
 		
 		CameraServer.getInstance().startAutomaticCapture();
@@ -117,11 +113,6 @@ public class Robot extends IterativeRobot {
 		if (teleOpDrive != null)
 			teleOpDrive.start();
 		
-		// Deploy Hopper Wall if undeployed
-		if(!hopper.getHopperStatus()) {
-			Command deployHopper = new ExtendHopperWall();
-			deployHopper.start();
-		}
 	}
 
 	/**
@@ -131,8 +122,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		driveTrain.updateSmartDashboard();
-		hopper.updateSmartDashboard();
-		groundGearIntake.updateSmartDashboard();
 	}
 
 	/**
