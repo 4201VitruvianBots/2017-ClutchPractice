@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4201.robot.subsystems;
 
+import org.usfirst.frc.team4201.robot.Robot;
 import org.usfirst.frc.team4201.robot.RobotMap;
 import org.usfirst.frc.team4201.robot.commands.SetSplitArcade;
 
@@ -59,17 +60,17 @@ public class DriveTrain extends Subsystem {
         rightMotors[1].changeControlMode(TalonControlMode.PercentVbus);
 		
         // Ensure motors are not inverted
-        robotDrive.setInvertedMotor(MotorType.kFrontLeft, false);
-        robotDrive.setInvertedMotor(MotorType.kFrontRight, false);
-        robotDrive.setInvertedMotor(MotorType.kRearLeft, false);
-        robotDrive.setInvertedMotor(MotorType.kRearRight, false);
+        robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
+        robotDrive.setInvertedMotor(MotorType.kFrontRight, true);
+        robotDrive.setInvertedMotor(MotorType.kRearLeft, true);
+        robotDrive.setInvertedMotor(MotorType.kRearRight, true);
 	}
 	
 	public void tankDrive(Joystick leftJoystick, Joystick rightJoystick) {
 		initDriverControl();
         
         // Set Tank Drive with cubed inputs. I don't know why the left/right joysticks are reversed
-    	robotDrive.tankDrive(Math.pow(rightJoystick.getAxis(AxisType.kY), 3), Math.pow(leftJoystick.getAxis(AxisType.kY), 3));
+    	robotDrive.tankDrive(Math.pow(leftJoystick.getAxis(AxisType.kY), 3), Math.pow(rightJoystick.getAxis(AxisType.kY), 3));
 	}
 	
 	public void splitArcadeDrive(Joystick leftJoystick, Joystick rightJoystick) {
@@ -111,6 +112,10 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putBoolean("Auto Shifting", !RobotMap.manualShiftOverride);
 		SmartDashboard.putNumber("DT Left Value", leftMotors[0].get());
 		SmartDashboard.putNumber("DT Right Value", rightMotors[0].get());
+		SmartDashboard.putNumber("1X", Robot.oi.leftJoystick.getAxis(AxisType.kX));
+		SmartDashboard.putNumber("1Y", Robot.oi.leftJoystick.getAxis(AxisType.kY));
+		SmartDashboard.putNumber("2X", Robot.oi.rightJoystick.getAxis(AxisType.kX));
+		SmartDashboard.putNumber("2Y", Robot.oi.rightJoystick.getAxis(AxisType.kY));
 	}
 	
 	public void initDefaultCommand() {

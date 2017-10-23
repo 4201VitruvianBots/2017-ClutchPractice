@@ -19,8 +19,8 @@ public class RobotMap {
 	
 	public static boolean manualShiftOverride = true;
 	
-	public static final int driveTrainMotorLeftFront = 3;
-	public static final int driveTrainMotorLeftRear = 2;
+	public static final int driveTrainMotorLeftFront = 2;
+	public static final int driveTrainMotorLeftRear = 3;
 	public static final int driveTrainMotorRightFront = 0;
 	public static final int driveTrainMotorRightRear = 1;
 	
