@@ -6,6 +6,8 @@ import org.usfirst.frc.team4201.robot.commands.SetSplitArcade;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
+import com.team254.frc2016.CheesyDriveHelper;
+import com.team254.lib.util.DriveSignal;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -29,6 +31,9 @@ public class DriveTrain extends Subsystem {
 		new CANTalon(RobotMap.driveTrainMotorRightRear),
 	};
 	RobotDrive robotDrive = new RobotDrive(leftMotors[0], leftMotors[1], rightMotors[0], rightMotors[1]);
+	
+	CheesyDriveHelper cheesyDrive = new CheesyDriveHelper();
+	DriveSignal signal = new DriveSignal(0, 0);
 	
 	DoubleSolenoid driveTrainShifters = new DoubleSolenoid(RobotMap.PCMOne, RobotMap.driveTrainShifterForward, RobotMap.driveTrainShifterReverse);
 	
@@ -86,6 +91,14 @@ public class DriveTrain extends Subsystem {
     	robotDrive.arcadeDrive(leftJoystick.getAxis(AxisType.kY), rightJoystickValue, true); 
 	}
 	
+	public void cheesyDrive(Joystick leftJoystick, Joystick rightJoystick) {
+		DriveSignal signal = cheesyDrive.cheesyDrive(-leftJoystick.getAxis(AxisType.kY), rightJoystick.getAxis(AxisType.kX), RobotMap.cheesyDriveBrakeMode);
+		leftMotors[0].set(signal.leftMotor);
+		leftMotors[1].set(signal.leftMotor);
+		rightMotors[0].set(signal.rightMotor);
+		rightMotors[1].set(signal.rightMotor);
+	}
+	
 	public void setHighGear() {
 		driveTrainShifters.set(Value.kForward);
 	}
@@ -118,10 +131,9 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putBoolean("Auto Shifting", !RobotMap.manualShiftOverride);
 		SmartDashboard.putNumber("DT Left Value", leftMotors[0].get());
 		SmartDashboard.putNumber("DT Right Value", rightMotors[0].get());
-		SmartDashboard.putNumber("1X", Robot.oi.leftJoystick.getAxis(AxisType.kX));
-		SmartDashboard.putNumber("1Y", Robot.oi.leftJoystick.getAxis(AxisType.kY));
-		SmartDashboard.putNumber("2X", Robot.oi.rightJoystick.getAxis(AxisType.kX));
-		SmartDashboard.putNumber("2Y", Robot.oi.rightJoystick.getAxis(AxisType.kY));
+		SmartDashboard.putNumber("Cheesy Left Motor", signal.leftMotor);
+		SmartDashboard.putNumber("Cheesy Right Motor", signal.rightMotor);
+		SmartDashboard.putBoolean("Cheesy Breake Mode", signal.breakMode);
 	}
 	
 	public void initDefaultCommand() {

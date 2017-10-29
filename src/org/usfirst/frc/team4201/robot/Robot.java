@@ -46,6 +46,7 @@ public class Robot extends IterativeRobot {
 		
 		driveMode.addDefault("Split Arcade", new SetSplitArcade());
 		driveMode.addObject("Tank Drive", new SetTankDrive());
+		driveMode.addObject("Cheesy Drive", new SetCheesyDrive());
 		SmartDashboard.putData("Drive Type", driveMode);
 	}
 

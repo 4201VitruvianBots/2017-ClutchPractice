@@ -61,5 +61,6 @@ public class OI {
 		leftButtons[6].whenPressed(new ToggleDriveShift());			// Physical Button Broken
 		
 		rightButtons[0].whenPressed(new ToggleAutoDriveShift());
+		rightButtons[1].whenPressed(new ToggleChessyBrakeMode());
 	}
 }
