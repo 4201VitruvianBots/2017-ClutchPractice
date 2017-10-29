@@ -35,6 +35,8 @@ public class DriveTrain extends Subsystem {
 	double upperShiftThreshold = 12;
 	double lowerShiftThreshold = 10;
 	
+
+	
 	public DriveTrain() {
 		super();
 
@@ -68,16 +70,20 @@ public class DriveTrain extends Subsystem {
 	
 	public void tankDrive(Joystick leftJoystick, Joystick rightJoystick) {
 		initDriverControl();
-        
         // Set Tank Drive with cubed inputs. I don't know why the left/right joysticks are reversed
     	robotDrive.tankDrive(Math.pow(leftJoystick.getAxis(AxisType.kY), 3), Math.pow(rightJoystick.getAxis(AxisType.kY), 3));
 	}
 	
-	public void splitArcadeDrive(Joystick leftJoystick, Joystick rightJoystick) {
+	public void splitArcadeDrive(Joystick leftJoystick, Joystick rightJoystick, double leftJoystickValue, double rightJoystickValue, double changeOfInput) {
 		initDriverControl();
+		leftJoystickValue = leftJoystick.getAxis(AxisType.kY);
+		leftJoystickValue = leftJoystickValue*9/10; //change later
+        rightJoystickValue = rightJoystick.getAxis(AxisType.kY);
+        changeOfInput = -Math.pow(leftJoystickValue, 2);
+        rightJoystickValue = rightJoystickValue*changeOfInput;
         
         // Set split Arcade Drive with squared inputs
-    	robotDrive.arcadeDrive(leftJoystick.getAxis(AxisType.kY), rightJoystick.getAxis(AxisType.kX), true); 
+    	robotDrive.arcadeDrive(leftJoystick.getAxis(AxisType.kY), rightJoystickValue, true); 
 	}
 	
 	public void setHighGear() {

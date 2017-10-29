@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4201.robot.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4201.robot.Robot;
@@ -19,6 +20,8 @@ public class ToggleDriveShift extends Command {
 	protected void initialize() {
 		if(Robot.driveTrain.getShiftStatus() != DoubleSolenoid.Value.kForward)
 			Robot.driveTrain.setHighGear();
+		else if(Robot.driveTrain.getShiftStatus() != DoubleSolenoid.Value.kReverse)
+			Robot.driveTrain.setLowGear();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

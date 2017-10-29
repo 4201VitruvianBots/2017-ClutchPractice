@@ -40,7 +40,8 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public Joystick leftJoystick, rightJoystick, xBoxController;
+	public Joystick leftJoystick;
+	public Joystick rightJoystick, xBoxController;
 	public Button[] leftButtons = new Button[7];
 	public Button[] rightButtons = new Button[7];
 	public Button[] xBoxButtons = new Button[9];
