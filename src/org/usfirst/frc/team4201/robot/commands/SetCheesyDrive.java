@@ -7,8 +7,8 @@ import org.usfirst.frc.team4201.robot.Robot;
 /**
  *
  */
-public class SetSplitArcade extends Command {
-	public SetSplitArcade() {
+public class SetCheesyDrive extends Command {
+	public SetCheesyDrive() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 	}
@@ -22,7 +22,7 @@ public class SetSplitArcade extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-    	Robot.driveTrain.splitArcadeDrive(Robot.oi.leftJoystick, Robot.oi.rightJoystick);
+    	Robot.driveTrain.cheesyDrive(Robot.oi.leftJoystick, Robot.oi.rightJoystick);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4201.robot.commands.*;
 import org.usfirst.frc.team4201.robot.subsystems.*;
 
+import com.team254.frc2016.CheesyDriveHelper;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -45,6 +47,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Automous Routines", autoMode);
 		
 		driveMode.addDefault("Split Arcade", new SetSplitArcade());
+		driveMode.addObject("Split Arcade Modified", new SetSplitArcadeModified());
 		driveMode.addObject("Tank Drive", new SetTankDrive());
 		driveMode.addObject("Cheesy Drive", new SetCheesyDrive());
 		SmartDashboard.putData("Drive Type", driveMode);
@@ -113,7 +116,6 @@ public class Robot extends IterativeRobot {
 		teleOpDrive = driveMode.getSelected();
 		if (teleOpDrive != null)
 			teleOpDrive.start();
-		
 	}
 
 	/**

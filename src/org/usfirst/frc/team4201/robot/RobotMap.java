@@ -18,7 +18,7 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	public static boolean manualShiftOverride = true;
-	public static boolean cheesyDriveBrakeMode = false;
+	public static boolean cheesyDriveBrakeMode = true;
 	
 	public static final int driveTrainMotorLeftFront = 2;
 	public static final int driveTrainMotorLeftRear = 3;

@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4201.robot.commands.*;
 
+import com.team254.lib.util.DriveSignal;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -40,8 +42,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public Joystick leftJoystick;
-	public Joystick rightJoystick, xBoxController;
+	public Joystick leftJoystick, rightJoystick, xBoxController;
 	public Button[] leftButtons = new Button[7];
 	public Button[] rightButtons = new Button[7];
 	public Button[] xBoxButtons = new Button[9];
@@ -61,6 +62,6 @@ public class OI {
 		leftButtons[6].whenPressed(new ToggleDriveShift());			// Physical Button Broken
 		
 		rightButtons[0].whenPressed(new ToggleAutoDriveShift());
-		rightButtons[1].whenPressed(new ToggleChessyBrakeMode());
+		rightButtons[1].whenPressed(new ToggleCheesyBrakeMode());
 	}
 }
